@@ -1,4 +1,4 @@
-![](./docs/banner.png)
+![](https://github.com/koplenov/treevee/blob/master/docs/banner.png?raw=true)
 <div align="center">
     <h1>treevee</h1>
     <p>is a V implementation of a parser for the tree format</p>
