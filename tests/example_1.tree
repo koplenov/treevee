@@ -1,0 +1,6 @@
+port \8079
+database_root_password \
+-
+default_htaccess \.htaccess
+-
+server_name \default server name

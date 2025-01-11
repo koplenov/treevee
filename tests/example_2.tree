@@ -1,0 +1,3 @@
+server auth
+	login \root
+	password \qwerty
