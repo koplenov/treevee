@@ -56,3 +56,10 @@ assert tree.value("user","hobby").array() == ['kendo', 'dance', 'role play']
 // of numbers
 assert tree.value("user","loved_numbers").array_int() == [7, 21, 42]
 ```
+
+
+## Other implementations
+
+* [TypeScript](https://github.com/eigenmethod/mol/tree/master/tree2)
+* [Python](https://github.com/thenesterov/treearbo)
+* [D](https://github.com/nin-jin/tree.d)
