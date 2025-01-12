@@ -26,6 +26,11 @@ pub fn (tree &Tree) bool() bool {
 	return tree.text().bool()
 }
 
+// string - return string reptresentation of text node value. (same as `.text()` or `.str()`)
+pub fn (tree &Tree) string() string {
+	return tree.text()
+}
+
 // array_of_strings - return strings array reptresentation of text node value.
 pub fn (tree &Tree) array_of_strings() []string {
 	return tree.text().split_into_lines()
