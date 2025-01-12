@@ -97,10 +97,13 @@
 </ul>
 </li>
 <li class="open"><a href="#Tree">struct Tree</a>        <ul>
-<li><a href="#Tree.array">fn array</a></li>
-<li><a href="#Tree.array_int">fn array_int</a></li>
+<li><a href="#Tree.array_of_bool">fn array_of_bool</a></li>
+<li><a href="#Tree.array_of_ints">fn array_of_ints</a></li>
+<li><a href="#Tree.array_of_strings">fn array_of_strings</a></li>
+<li><a href="#Tree.bool">fn bool</a></li>
 <li><a href="#Tree.int">fn int</a></li>
 <li><a href="#Tree.select">fn select</a></li>
+<li><a href="#Tree.str">fn str</a></li>
 <li><a href="#Tree.struct">fn struct</a></li>
 <li><a href="#Tree.text">fn text</a></li>
 <li><a href="#Tree.to_string">fn to_string</a></li>
@@ -135,10 +138,10 @@
 <span class="token keyword">assert</span> tree<span class="token punctuation">.</span><span class="token function">value</span><span class="token punctuation">(</span><span class="token string">'server'</span><span class="token punctuation">,</span> <span class="token string">'auth'</span><span class="token punctuation">,</span> <span class="token string">'login'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">'root'</span>
 <span class="token keyword">assert</span> tree<span class="token punctuation">.</span><span class="token function">value</span><span class="token punctuation">(</span><span class="token string">'server'</span><span class="token punctuation">,</span> <span class="token string">'auth'</span><span class="token punctuation">,</span> <span class="token string">'password'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">'qwerty'</span></code></pre><h3>Select arrays:</h3><pre><code class="language-v">tree <span class="token operator">:=</span> treeve<span class="token punctuation">.</span>Tree<span class="token punctuation">.</span><span class="token function">from_string_file</span><span class="token punctuation">(</span><span class="token string">'./tests/example_3.tree'</span><span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token punctuation">{</span> <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">}</span>
 <span class="token comment">// of strings</span>
-<span class="token keyword">assert</span> tree<span class="token punctuation">.</span><span class="token function">value</span><span class="token punctuation">(</span><span class="token string">'user'</span><span class="token punctuation">,</span><span class="token string">'hobby'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">array</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token punctuation">[</span><span class="token string">'kendo'</span><span class="token punctuation">,</span> <span class="token string">'dance'</span><span class="token punctuation">,</span> <span class="token string">'role play'</span><span class="token punctuation">]</span>
+<span class="token keyword">assert</span> tree<span class="token punctuation">.</span><span class="token function">value</span><span class="token punctuation">(</span><span class="token string">'user'</span><span class="token punctuation">,</span><span class="token string">'hobby'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">array_of_strings</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token punctuation">[</span><span class="token string">'kendo'</span><span class="token punctuation">,</span> <span class="token string">'dance'</span><span class="token punctuation">,</span> <span class="token string">'role play'</span><span class="token punctuation">]</span>
 
 <span class="token comment">// of numbers</span>
-<span class="token keyword">assert</span> tree<span class="token punctuation">.</span><span class="token function">value</span><span class="token punctuation">(</span><span class="token string">'user'</span><span class="token punctuation">,</span><span class="token string">'loved_numbers'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">array_int</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">21</span><span class="token punctuation">,</span> <span class="token number">42</span><span class="token punctuation">]</span></code></pre><h2>Other implementations</h2><ul><li><a href="https://github.com/eigenmethod/mol/tree/master/tree2">TypeScript</a></li><li><a href="https://github.com/thenesterov/treearbo">Python</a></li><li><a href="https://github.com/nin-jin/tree.d">D</a></li></ul>
+<span class="token keyword">assert</span> tree<span class="token punctuation">.</span><span class="token function">value</span><span class="token punctuation">(</span><span class="token string">'user'</span><span class="token punctuation">,</span><span class="token string">'loved_numbers'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">array_of_ints</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">21</span><span class="token punctuation">,</span> <span class="token number">42</span><span class="token punctuation">]</span></code></pre><h2>Other implementations</h2><ul><li><a href="https://github.com/eigenmethod/mol/tree/master/tree2">TypeScript</a></li><li><a href="https://github.com/thenesterov/treearbo">Python</a></li><li><a href="https://github.com/nin-jin/tree.d">D</a></li></ul>
 
 </section>
 
@@ -178,7 +181,7 @@
 			<div class="title"><h2>fn Tree.from_string <a href="#Tree.from_string">#</a></h2></div>
 <pre class="signature">
 <code><span class="token keyword">fn</span> Tree<span class="token punctuation">.</span><span class="token function">from_string</span><span class="token punctuation">(</span>str <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token operator">!</span><span class="token operator">&</span>Tree</code></pre>
-
+<p>Parses tree format from string.</p>
 
 </section>
 
@@ -210,7 +213,7 @@
 			<div class="title"><h2>fn Tree.struct <a href="#Tree.struct">#</a></h2></div>
 <pre class="signature">
 <code><span class="token keyword">fn</span> Tree<span class="token punctuation">.</span><span class="token keyword">struct</span><span class="token punctuation">(</span><span class="token keyword">type</span> <span class="token builtin">string</span><span class="token punctuation">,</span> kids <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">&</span>Tree<span class="token punctuation">,</span> span Span<span class="token punctuation">)</span> <span class="token operator">&</span>Tree</code></pre>
-
+<p>Makes struct node.</p>
 
 </section>
 
@@ -281,19 +284,35 @@
 
 </section>
 
-		<section id="Tree.array" class="doc-node">
-			<div class="title"><h2>fn (Tree) array <a href="#Tree.array">#</a></h2></div>
+		<section id="Tree.array_of_bool" class="doc-node">
+			<div class="title"><h2>fn (Tree) array_of_bool <a href="#Tree.array_of_bool">#</a></h2></div>
 <pre class="signature">
-<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>tree <span class="token operator">&</span>Tree<span class="token punctuation">)</span> <span class="token builtin">array</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span></code></pre>
-<p>array - return string array reptresentation of text node value.</p>
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>tree <span class="token operator">&</span>Tree<span class="token punctuation">)</span> <span class="token function">array_of_bool</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">bool</span></code></pre>
+<p>array_of_bool - return bool array reptresentation of text node value.</p>
 
 </section>
 
-		<section id="Tree.array_int" class="doc-node">
-			<div class="title"><h2>fn (Tree) array_int <a href="#Tree.array_int">#</a></h2></div>
+		<section id="Tree.array_of_ints" class="doc-node">
+			<div class="title"><h2>fn (Tree) array_of_ints <a href="#Tree.array_of_ints">#</a></h2></div>
 <pre class="signature">
-<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>tree <span class="token operator">&</span>Tree<span class="token punctuation">)</span> <span class="token function">array_int</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span></code></pre>
-<p>array - return int array reptresentation of text node value.</p>
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>tree <span class="token operator">&</span>Tree<span class="token punctuation">)</span> <span class="token function">array_of_ints</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span></code></pre>
+<p>array_of_ints - return int array reptresentation of text node value.</p>
+
+</section>
+
+		<section id="Tree.array_of_strings" class="doc-node">
+			<div class="title"><h2>fn (Tree) array_of_strings <a href="#Tree.array_of_strings">#</a></h2></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>tree <span class="token operator">&</span>Tree<span class="token punctuation">)</span> <span class="token function">array_of_strings</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span></code></pre>
+<p>array_of_strings - return strings array reptresentation of text node value.</p>
+
+</section>
+
+		<section id="Tree.bool" class="doc-node">
+			<div class="title"><h2>fn (Tree) bool <a href="#Tree.bool">#</a></h2></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>tree <span class="token operator">&</span>Tree<span class="token punctuation">)</span> <span class="token builtin">bool</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>bool - return bool reptresentation of text node value.</p>
 
 </section>
 
@@ -309,7 +328,15 @@
 			<div class="title"><h2>fn (Tree) select <a href="#Tree.select">#</a></h2></div>
 <pre class="signature">
 <code><span class="token keyword">fn</span> <span class="token punctuation">(</span>tree <span class="token operator">&</span>Tree<span class="token punctuation">)</span> <span class="token keyword">select</span><span class="token punctuation">(</span>path <span class="token punctuation">...</span>TreePath<span class="token punctuation">)</span> <span class="token operator">&</span>Tree</code></pre>
+<p>select - Query nodes by path.</p>
 
+</section>
+
+		<section id="Tree.str" class="doc-node">
+			<div class="title"><h2>fn (Tree) str <a href="#Tree.str">#</a></h2></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>tree <span class="token operator">&</span>Tree<span class="token punctuation">)</span> <span class="token function">str</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span></code></pre>
+<p>str returns serialized tree node</p>
 
 </section>
 
@@ -317,7 +344,7 @@
 			<div class="title"><h2>fn (Tree) struct <a href="#Tree.struct">#</a></h2></div>
 <pre class="signature">
 <code><span class="token keyword">fn</span> <span class="token punctuation">(</span>tree Tree<span class="token punctuation">)</span> <span class="token keyword">struct</span><span class="token punctuation">(</span><span class="token keyword">type</span> <span class="token builtin">string</span><span class="token punctuation">,</span> kids <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">&</span>Tree<span class="token punctuation">)</span> <span class="token operator">&</span>Tree</code></pre>
-
+<p>Makes new derived structural node.</p>
 
 </section>
 
@@ -325,7 +352,7 @@
 			<div class="title"><h2>fn (Tree) text <a href="#Tree.text">#</a></h2></div>
 <pre class="signature">
 <code><span class="token keyword">fn</span> <span class="token punctuation">(</span>tree <span class="token operator">&</span>Tree<span class="token punctuation">)</span> <span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span></code></pre>
-
+<p>Returns multiline text content.</p>
 
 </section>
 
@@ -333,7 +360,7 @@
 			<div class="title"><h2>fn (Tree) to_string <a href="#Tree.to_string">#</a></h2></div>
 <pre class="signature">
 <code><span class="token keyword">fn</span> <span class="token punctuation">(</span>tree <span class="token operator">&</span>Tree<span class="token punctuation">)</span> <span class="token function">to_string</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span></code></pre>
-
+<p>Serializes to tree format.</p>
 
 </section>
 
@@ -346,7 +373,7 @@
 </section>
 
 
-						<div class="footer">Powered by vdoc. Generated on: 12 Jan 2025 03:18:33</div>
+						<div class="footer">Powered by vdoc. Generated on: 12 Jan 2025 04:45:48</div>
 					</div>
 					
 				</div>

@@ -48,6 +48,6 @@ fn test_select_nested_value() {
 
 fn test_select_array() {
 	tree := treeve.Tree.from_string_file("./tests/example_3.tree") or { panic(err) }
-	assert tree.value("user","hobby").array() == ['kendo', 'dance', 'role play']
-	assert tree.value("user","loved_numbers").array_int() == [7, 21, 42]
+	assert tree.value("user","hobby").array_of_strings() == ['kendo', 'dance', 'role play']
+	assert tree.value("user","loved_numbers").array_of_ints() == [7, 21, 42]
 }

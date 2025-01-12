@@ -21,12 +21,22 @@ pub fn (tree &Tree) int() int {
 	return tree.text().int()
 }
 
-// array - return string array reptresentation of text node value.
-pub fn (tree &Tree) array() []string {
+// bool - return bool reptresentation of text node value.
+pub fn (tree &Tree) bool() bool {
+	return tree.text().bool()
+}
+
+// array_of_strings - return strings array reptresentation of text node value.
+pub fn (tree &Tree) array_of_strings() []string {
 	return tree.text().split_into_lines()
 }
 
-// array - return int array reptresentation of text node value.
-pub fn (tree &Tree) array_int() []int {
-	return tree.text().split_into_lines().map(it.int())
+// array_of_ints - return int array reptresentation of text node value.
+pub fn (tree &Tree) array_of_ints() []int {
+	return tree.array_of_strings().map(it.int())
+}
+
+// array_of_bool - return bool array reptresentation of text node value.
+pub fn (tree &Tree) array_of_bool() []bool {
+	return tree.array_of_strings().map(it.bool())
 }

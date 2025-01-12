@@ -51,10 +51,10 @@ assert tree.value("server", "auth", "password").text() == "qwerty"
 ```v
 tree := treeve.Tree.from_string_file("./tests/example_3.tree") or { panic(err) }
 // of strings
-assert tree.value("user","hobby").array() == ['kendo', 'dance', 'role play']
+assert tree.value("user","hobby").array_of_strings() == ['kendo', 'dance', 'role play']
 
 // of numbers
-assert tree.value("user","loved_numbers").array_int() == [7, 21, 42]
+assert tree.value("user","loved_numbers").array_of_ints() == [7, 21, 42]
 ```
 
 

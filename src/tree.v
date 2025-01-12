@@ -23,6 +23,7 @@ pub fn Tree.list(kids []&Tree, span Span) &Tree {
 	}
 }
 
+// Parses tree format from string.
 pub fn Tree.from_string(str string) !&Tree {
 	return Tree.from_string_with_uri(str, '?')
 }
@@ -146,6 +147,7 @@ pub fn Tree.from_string_with_uri(str string, uri string) !&Tree {
 	return root
 }
 
+// Makes struct node.
 pub fn Tree.struct(type string, kids []&Tree, span Span) &Tree {
 	return &Tree{
 		type:  type
@@ -155,6 +157,7 @@ pub fn Tree.struct(type string, kids []&Tree, span Span) &Tree {
 	}
 }
 
+// Makes new derived structural node.
 pub fn (tree Tree) struct(type string, kids []&Tree) &Tree {
 	return &Tree{
 		type:  type
@@ -164,6 +167,7 @@ pub fn (tree Tree) struct(type string, kids []&Tree) &Tree {
 	}
 }
 
+// Returns multiline text content.
 pub fn (tree &Tree) text() string {
 	mut values := []string{}
 	for kid in tree.kids {
@@ -175,10 +179,16 @@ pub fn (tree &Tree) text() string {
 	return tree.value + values.join('\n')
 }
 
+// Serializes to tree format.
 pub fn (tree &Tree) to_string() string {
 	mut output := []string{}
 	tree_dump(tree, '', mut output)
 	return output.join('')
+}
+
+// str returns serialized tree node
+pub fn (tree &Tree) str() string {
+	return tree.to_string()
 }
 
 fn tree_dump(input_tree &Tree, preffix string, mut output []string) {
@@ -210,6 +220,7 @@ fn tree_dump(input_tree &Tree, preffix string, mut output []string) {
 
 pub type TreePath = string | int
 
+// select - Query nodes by path.
 pub fn (tree &Tree) select(path ...TreePath) &Tree {
 	mut next := [tree]
 
