@@ -24,7 +24,7 @@ fn main() {
 ### Select values:
 
 ```v
-tree := treeve.Tree.from_string_file("./tests/example_1.tree") or { panic(err) }
+tree := treevee.Tree.from_string_file("./tests/example_1.tree") or { panic(err) }
 
 // integer
 assert tree.value("port").int() == 8079
@@ -39,7 +39,7 @@ assert tree.value("server_name").text() == "default server name"
 ### Select nested values:
 
 ```v
-tree := treeve.Tree.from_string_file("./tests/example_2.tree") or { panic(err) }
+tree := treevee.Tree.from_string_file("./tests/example_2.tree") or { panic(err) }
 
 assert tree.select("server", "auth").kids[0].kids.len == 2
 assert tree.value("server", "auth", "login").text() == "root"
@@ -49,7 +49,7 @@ assert tree.value("server", "auth", "password").text() == "qwerty"
 ### Select arrays:
 
 ```v
-tree := treeve.Tree.from_string_file("./tests/example_3.tree") or { panic(err) }
+tree := treevee.Tree.from_string_file("./tests/example_3.tree") or { panic(err) }
 // of strings
 assert tree.value("user","hobby").array_of_strings() == ['kendo', 'dance', 'role play']
 

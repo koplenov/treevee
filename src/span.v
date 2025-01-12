@@ -1,4 +1,4 @@
-module treeve
+module treevee
 
 pub struct Span {
 pub:

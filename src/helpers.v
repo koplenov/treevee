@@ -1,4 +1,4 @@
-module treeve
+module treevee
 
 import os
 
