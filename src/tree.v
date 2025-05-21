@@ -250,3 +250,61 @@ pub fn (tree &Tree) select(path ...TreePath) &Tree {
 
 	return Tree.list(next, tree.span)
 }
+
+// insert - Returns a new tree with `value` inserted or replaced at the given path.
+// - If path is empty, replaces the current node with `value`.
+// - For string path: replaces or inserts a struct node with the given type.
+// - For int path: replaces or inserts at the given index, extending with empty nodes if needed.
+pub fn (tree &Tree) insert(value &Tree, path ...TreePath) &Tree {
+	if path.len == 0 {
+		if value == unsafe { nil } { return Tree.list([], tree.span) }
+		return &Tree{
+			type: value.type
+			value: value.value
+			kids: value.kids.clone()
+			span: value.span
+		}
+	}
+
+	match path[0] {
+		string {
+			typ := path[0] as string
+			mut found := false
+			mut kids := []&Tree{}
+			for item in tree.kids {
+				if item.type == typ {
+					found = true
+					kids << item.insert(value, ...path[1..])
+				} else {
+					kids << item
+				}
+			}
+			if !found && value != unsafe { nil } {
+				kids << tree.struct(typ, []&Tree{}).insert(value, ...path[1..])
+			}
+			return tree.struct(tree.type, kids)
+		}
+
+		int {
+			idx := path[0] as int
+			mut kids := tree.kids.clone()
+			for kids.len <= idx {
+				kids << &Tree{
+					type: ''
+					value: ''
+					kids: []&Tree{}
+					span: tree.span
+				}
+			}
+			kids[idx] = kids[idx].insert(value, ...path[1..])
+			return tree.struct(tree.type, kids)
+		}
+	}
+
+	// fallback: unreachable, for safety
+	mut kids := if tree.kids.len == 0 { [Tree.list([], tree.span)] } else { tree.kids.clone() }
+	for i, kid in kids {
+		kids[i] = kid.insert(value, ...path[1..])
+	}
+	return tree.struct(tree.type, kids)
+}
