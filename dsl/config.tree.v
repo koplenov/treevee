@@ -6,10 +6,17 @@ import treevee
 // my owm dsl Config.tree
 pub type Config = treevee.Tree
 
-pub fn Config.from_string_file(path string) !Config{
+pub fn Config.from_file(path string) !Config{
 	mut str := os.read_file(path) or { panic(err) }
 	tree := treevee.Tree.from_string_with_uri(str.trim_space() + '\n', '?') or { panic(err) }
 	return Config(*tree)
+}
+
+
+// helper methods
+
+pub fn (config Config) to_file(path string) !{
+	os.write_file(path, config.to_string()) or { panic(err) }
 }
 
 pub type InsertData = string | Config
