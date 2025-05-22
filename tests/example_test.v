@@ -1,6 +1,8 @@
 module main
 
 import treevee
+import treevee.sdl
+
 import os
 
 fn test_tree_to_string_raw() {
@@ -83,3 +85,19 @@ fn test_tree_insert() {
 	inserted6 := tree6.insert(tree6.struct('x', []&treevee.Tree{}))
 	assert inserted6.to_string() == 'x\n'
 }
+
+
+fn test_add_item_to_array() {
+	// config := treevee.Tree.from_string_file("./tests/example_3.tree") or { panic(err) }
+	// new_config := config.add_item_to_array(treevee.Tree{ value: "programming" }, "user", "hobby")
+
+
+	// new_config := config.add_item_to_array("new_ip", "peers")
+	// println(new_config)
+	// panic(new_config)
+
+    // config := treevee.sdl.Config{}
+
+
+}
+

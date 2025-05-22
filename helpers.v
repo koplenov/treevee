@@ -45,3 +45,47 @@ pub fn (tree &Tree) array_of_ints() []int {
 pub fn (tree &Tree) array_of_bool() []bool {
 	return tree.array_of_strings().map(it.bool())
 }
+
+pub fn (tree &Tree) add_item_to_array2(value &Tree, path ...TreePath) &Tree {
+	mut current_elemets_node := tree.select(path)
+	current_elemets_node.kids[0].kids << value
+	return tree.insert(current_elemets_node, path)
+	// return tree.insert(value, path)
+}
+
+pub type InsertData = string | Tree
+
+
+// pub fn (tree &Tree) add_item_to_array(value InsertData, path ...TreePath) &Tree {
+// 	insert_node := match value {
+// 		string { Tree{value: value} }
+// 		Tree { value }
+// 	}
+
+// 	last := path.last()
+// 	match last {
+// 		string {
+// 			mut data := tree.value(...path).kids.clone()
+// 			data << &insert_node
+// 			inseerted := tree.insert(tree.struct(last, data), ...path)
+// 			return inseerted
+// 		}
+
+// 		int {
+// 			println(path)
+// 			panic("TODO: need implement support int path")
+// 		}
+// 	}
+// }
+
+// pub fn (tree &Tree) replace_value(value InsertData, path ...TreePath) &Tree {
+// 	insert_node := match value {
+// 		string { Tree{value: value} }
+// 		Tree { value }
+// 	}
+
+// 	mut unpack_first := path.clone()
+// 	unpack_first << ''
+
+// 	return tree.insert(insert_node, ...unpack_first)
+// }
