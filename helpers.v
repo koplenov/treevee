@@ -8,7 +8,7 @@ import os
 pub fn (tree &Tree) value(path ...TreePath) &Tree {
 	mut unpack_first := path.clone()
 	unpack_first << ''
-	return tree.select(unpack_first)
+	return tree.select(...unpack_first)
 }
 
 pub fn Tree.from_string_file(path string) !&Tree {
@@ -47,7 +47,7 @@ pub fn (tree &Tree) array_of_bool() []bool {
 }
 
 pub fn (tree &Tree) add_item_to_array2(value &Tree, path ...TreePath) &Tree {
-	mut current_elemets_node := tree.select(path)
+	mut current_elemets_node := tree.select(...path)
 	current_elemets_node.kids[0].kids << value
 	return tree.insert(current_elemets_node, path)
 	// return tree.insert(value, path)
